@@ -1,5 +1,8 @@
 name: Deployment pipeline
 
+env:
+  PORT: 5000
+
 on:
   push:
     branches:
@@ -13,7 +16,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
-          PORT: 5000
       - name: npm install 
         run: npm install  
       - name: lint
