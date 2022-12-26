@@ -11,4 +11,7 @@ jobs:
           echo "Hello World!"
       - name: Print date
         run: |
-          echo "$(date +%Y%m%d%H%M)"
+          echo "$(date +%Y.%m.%d)"
+        - name: Print current directory
+      run: |
+        ls
