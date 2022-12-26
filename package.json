@@ -10,7 +10,7 @@
     "eslint": "eslint './**/*.{js,jsx}' --fix",
     "build": "webpack --mode production",
     "cypress:open": "cypress open",
-    "cypress:e2e": "cypress run --e2e"
+    "test:e2e": "cypress run --e2e"
   },
   "repository": {
     "type": "git",
