@@ -13,5 +13,5 @@ jobs:
         run: |
           echo "$(date +%Y.%m.%d)"
       - name: Print current directory
-      run: |
-        ls
+        run: |
+          ls
