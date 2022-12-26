@@ -16,6 +16,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
+          set: PORT=5000
       - name: npm install 
         run: npm install  
       - name: lint
