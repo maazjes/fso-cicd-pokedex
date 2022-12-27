@@ -26,7 +26,7 @@ jobs:
         with:
           command: npm run test:e2e
           start: npm run start-prod
-          wait-on: http://localhost:
+          wait-on: http://localhost
   deploy_app:
     runs-on: ubuntu-latest
     env:
