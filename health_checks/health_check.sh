@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TEST="curl http://localhost:5000/health"
+TEST="curl http://localhost:8080/health"
 
 $TEST
 RESPONSE=`$TEST`
