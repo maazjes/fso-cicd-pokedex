@@ -11,6 +11,26 @@ processes = []
   allowed_public_ports = []
   auto_rollback = true
 
+[checks]
+
+  [checks.health]
+    grace_period = "5s"
+    interval = "10000"
+    method = "get"
+    path = "/health"
+    port = 8080
+    timeout = "10s"
+    type = "http"
+
+  [checks.version]
+    grace_period = "5s"
+    interval = "10000"
+    method = "get"
+    path = "/version"
+    port = 8080
+    timeout = "10s"
+    type = "http"
+
 [[services]]
   internal_port = 8080
   processes = ["app"]
@@ -21,28 +41,6 @@ processes = []
     hard_limit = 25
     soft_limit = 20
     type = "connections"
-
-  [[services.http_checks]]
-
-    [services.http_checks.version]
-      interval = 10000
-      grace_period = "5s"
-      method = "get"
-      path = "/version"
-      protocol = "http"
-      restart_limit = 0
-      timeout = 2000
-      tls_skip_verify = false
-
-    [services.http_checks.health]
-      interval = 10000
-      grace_period = "5s"
-      method = "get"
-      path = "/health"
-      protocol = "http"
-      restart_limit = 0
-      timeout = 2000
-      tls_skip_verify = false
 
   [[services.ports]]
     force_https = true
@@ -58,6 +56,13 @@ processes = []
     interval = "15s"
     restart_limit = 0
     timeout = "2s"
+
+  [[services.script_checks]]
+    command = "./health_checks/health_check"
+    grace_period = "1s"
+    interval = "5s"
+    restart_limit = 0
+    timeout = "1s"
 
   [deploy]
     release_command = "npm run build"
