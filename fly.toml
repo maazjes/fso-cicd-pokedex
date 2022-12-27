@@ -24,7 +24,7 @@ processes = []
 
   [[services.http_checks]]
 
-    [http_checks.version]
+    [services.http_checks.version]
       interval = 10000
       grace_period = "5s"
       method = "get"
@@ -34,7 +34,7 @@ processes = []
       timeout = 2000
       tls_skip_verify = false
 
-    [http_checks.health]
+    [services.http_checks.health]
       interval = 10000
       grace_period = "5s"
       method = "get"
