@@ -12,15 +12,37 @@ processes = []
   auto_rollback = true
 
 [[services]]
-  http_checks = []
   internal_port = 8080
   processes = ["app"]
   protocol = "tcp"
   script_checks = []
+
   [services.concurrency]
     hard_limit = 25
     soft_limit = 20
     type = "connections"
+
+  [[services.http_checks]]
+
+    [http_checks.version]
+      interval = 10000
+      grace_period = "5s"
+      method = "get"
+      path = "/version"
+      protocol = "http"
+      restart_limit = 3
+      timeout = 2000
+      tls_skip_verify = false
+
+    [http_checks.health]
+      interval = 10000
+      grace_period = "5s"
+      method = "get"
+      path = "/health"
+      protocol = "http"
+      restart_limit = 3
+      timeout = 2000
+      tls_skip_verify = false
 
   [[services.ports]]
     force_https = true
