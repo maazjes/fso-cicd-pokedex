@@ -1,5 +1,11 @@
 #!/bin/bash
 
-echo "Hello from shell script"
+TEST="curl http://localhost:5000/health"
 
-exit 1 # exit status 1 means that the script "fails"
+$TEST
+RESPONSE=`$TEST`
+
+if [ "$RESPONSE" != "ok" ]
+then
+    exit 0
+fi
