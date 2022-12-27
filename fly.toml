@@ -11,6 +11,17 @@ processes = []
   allowed_public_ports = []
   auto_rollback = true
 
+[checks]
+
+  [checks.health]
+    grace_period = "5s"
+    interval = "10000"
+    method = "get"
+    path = "/health"
+    port = 8080
+    timeout = "10s"
+    type = "http"
+
 [[services]]
   internal_port = 8080
   processes = ["app"]
@@ -30,7 +41,7 @@ processes = []
       method = "get"
       path = "/version"
       protocol = "http"
-      restart_limit = 3
+      restart_limit = 0
       timeout = 2000
       tls_skip_verify = false
 
@@ -40,7 +51,7 @@ processes = []
       method = "get"
       path = "/health"
       protocol = "http"
-      restart_limit = 3
+      restart_limit = 0
       timeout = 2000
       tls_skip_verify = false
 
