@@ -47,8 +47,7 @@ jobs:
           start: npm run start-prod
           wait-on: http://localhost:8080/
   deploy_app:
-    COMMITS: ${{ toJson(github.event.commits) }}
-    if: ${{ github.event_name == 'push' }} && ${{ !contains(join("$COMMITS", ' '), '#skip') }}
+    if: ${{ github.event_name == 'push' }}
     needs: simple_deployment_pipeline
     runs-on: ubuntu-latest
     env:
