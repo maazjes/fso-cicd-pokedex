@@ -56,13 +56,6 @@ processes = []
     restart_limit = 0
     timeout = "2s"
 
-  [[services.script_checks]]
-    command = "./health_checks/health_check"
-    grace_period = "5s"
-    interval = "5000"
-    restart_limit = 0
-    timeout = "5s"
-
   [deploy]
     release_command = "npm run build"
 
