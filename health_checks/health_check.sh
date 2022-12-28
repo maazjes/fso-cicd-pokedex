@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TEST="curl https://fullstack-pokedex.fly.dev/health"
+TEST="curl https://fullstack-pokedex.fly.dev:8080/health"
 
 $TEST
 RESPONSE=`$TEST`
