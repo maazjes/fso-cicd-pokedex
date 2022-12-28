@@ -10,9 +10,7 @@ on:
 
 jobs:
   simple_deployment_pipeline:
-    COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
-    run: echo "$COMMIT_MESSAGES"
-    if: ${{ github.event_name == 'push' }} && ${{ !contains(fromJson(toJson(github.event.commits.*.message)), '#skip') }}
+    if: ${{ github.event_name == 'push' }} && ${{ !contains(fromJson(github.event.commits.*.message), '#skip') }}
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
