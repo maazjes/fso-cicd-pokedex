@@ -1,9 +1,10 @@
 #!/bin/bash
 
-TEST="curl http://fullstack-pokedex.fly.dev:8080/health"
+TEST="curl http://fullstack-pokedex.fly.dev/health"
 
 $TEST
 RESPONSE=`$TEST`
+echo asder
 echo $RESPONSE
 
 if [ "$RESPONSE" = "ok" ]
