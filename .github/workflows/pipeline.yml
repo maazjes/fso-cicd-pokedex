@@ -18,7 +18,6 @@ jobs:
           node-version: '16'
       - name: npm install 
         run: echo ${{ toJson(github.event.commits) }}
-        run: npm install  
       - name: lint
         run: npm run eslint
       - name: build
