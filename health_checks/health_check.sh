@@ -1,13 +1,13 @@
 #!/bin/bash
 
-TEST="curl http://localhost:8080/health"
+TEST="curl https://fullstack-pokedex.fly.dev/health"
 
 $TEST
 RESPONSE=`$TEST`
 
-if [ "$RESPONSE" != "ok" ]
+if [ "$RESPONSE" = "ok" ]
 then
-    exit 1
-else
     exit 0
+else
+    exit 1
 fi
