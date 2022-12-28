@@ -7,6 +7,6 @@ RESPONSE=`$TEST`
 
 if [ "$RESPONSE" != "ok" ]
 then
-    exit 0
+    exit 1
 fi
 exit 0
