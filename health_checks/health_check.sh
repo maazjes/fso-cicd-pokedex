@@ -7,5 +7,7 @@ RESPONSE=`$TEST`
 
 if [ "$RESPONSE" != "ok" ]
 then
-    echo asd
+    exit 1
+else
+    exit 0
 fi
