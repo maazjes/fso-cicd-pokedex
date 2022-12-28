@@ -10,6 +10,7 @@ on:
 
 jobs:
   simple_deployment_pipeline:
+    if: ${{ !contains(join(toJson(github.event.commits.*.message), ' '), '#skip') }}
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
@@ -31,7 +32,7 @@ jobs:
           start: npm run start-prod
           wait-on: http://localhost:8080/
   deploy_app:
-    if: ${{ github.event_name == 'push' }} && ${{ !contains(join(toJson(github.event.commits.*.message), ' '), '#skip') }}
+    if: ${{ github.event_name == 'push' }}
     needs: simple_deployment_pipeline
     runs-on: ubuntu-latest
     env:
