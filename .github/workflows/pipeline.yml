@@ -4,9 +4,13 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    branches: [master]
+    types: [opened, synchronize]
 
 jobs:
   simple_deployment_pipeline:
+    if: ${{ github.event_name == 'pull_request' }}
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
@@ -28,6 +32,7 @@ jobs:
           start: npm run start-prod
           wait-on: http://localhost:8080/
   deploy_app:
+    if: ${{ github.event_name == 'push' }}
     needs: simple_deployment_pipeline
     runs-on: ubuntu-latest
     env:
