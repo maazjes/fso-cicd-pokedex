@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: '16'
       - name: npm install 
-        run: echo ${{ toJson(github.event.commits) }}
+        run: npm install  
       - name: lint
         run: npm run eslint
       - name: build
@@ -31,7 +31,8 @@ jobs:
           start: npm run start-prod
           wait-on: http://localhost:8080/
   deploy_app:
-    if: ${{ github.event_name == 'push' }} && ${{ !contains(join(toJson(github.event.commits.*.message), ' '), '#skip') }}
+    COMMITS: ${{ toJson(github.event.commits) }}
+    if: ${{ github.event_name == 'push' }} && ${{ !contains(join($COMMITS, ' '), '#skip') }}
     needs: simple_deployment_pipeline
     runs-on: ubuntu-latest
     env:
