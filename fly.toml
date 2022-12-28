@@ -15,11 +15,11 @@ processes = []
 
   [checks.health]
     grace_period = "5s"
-    interval = "10000"
+    interval = "5000"
     method = "get"
     path = "/health"
     port = 8080
-    timeout = "10s"
+    timeout = "5s"
     type = "http"
 
   [checks.version]
@@ -55,6 +55,13 @@ processes = []
     interval = "15s"
     restart_limit = 0
     timeout = "2s"
+
+  [[services.script_checks]]
+    command = "./health_checks/health_check"
+    grace_period = "5s"
+    interval = "5000"
+    restart_limit = 0
+    timeout = "5s"
 
   [deploy]
     release_command = "npm run build"
