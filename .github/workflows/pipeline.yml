@@ -58,7 +58,7 @@ jobs:
         with:
           severity: info
           text: A new version of Pokedex deployed
-          description: to https://fullstack-pokedex.fly.dev/ by ${{ github.event.actor.display_login	}}
+          description: to https://fullstack-pokedex.fly.dev/ by ${{ github.event.actor.login }}
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Test Failure
         uses: rjstone/discord-webhook-notify@v1
@@ -66,5 +66,5 @@ jobs:
         with:
           severity: error
           text: Build failed
-          description: commit ${{ github.event.repository.url	}} by ${{ github.event.actor.display_login	}} broke the build
+          description: commit ${{ github.event.repository.url	}} by ${{ github.event.actor.login }} broke the build
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
